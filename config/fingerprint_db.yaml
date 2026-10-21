@@ -1,0 +1,20 @@
+signatures:
+  - vendor: "Fortinet FortiGate"
+    match:
+      - {port: 443, banner_contains: ["FortiGate", "Fortinet"]}
+      - {port: 10443, any: true}
+  - vendor: "Palo Alto PAN-OS"
+    match:
+      - {port: 443, banner_contains: ["PAN-OS", "Palo Alto", "GlobalProtect"]}
+      - {port: 4443, any: true}
+  - vendor: "Cisco ASA"
+    match:
+      - {port: 443, banner_contains: ["Cisco", "ASA"]}
+      - {port: 8443, any: true}
+  - vendor: "pfSense"
+    match:
+      - {port: 443, banner_contains: ["pfSense"]}
+      - {port: 80, banner_contains: ["pfSense"]}
+  - vendor: "OpenWrt"
+    match:
+      - {port: 80, banner_contains: ["LuCI", "OpenWrt"]}

@@ -1,0 +1,105 @@
+{
+  "system_status": {
+    "hostname": "FW-192-168-1-1",
+    "vendor": "fortigate",
+    "version": "v7.2.5-build1517",
+    "serial": "FGT60E01523446",
+    "mode": "NAT/Route",
+    "uptime_seconds": 184520,
+    "mgmt_ip": "192.168.1.1"
+  },
+  "interfaces": [
+    {
+      "name": "wan1",
+      "ip": "192.168.1.1",
+      "netmask": "255.255.255.0",
+      "type": "physical",
+      "allowaccess": "ping,https,ssh"
+    },
+    {
+      "name": "internal",
+      "ip": "10.0.1.1",
+      "netmask": "255.255.255.0",
+      "type": "switch",
+      "allowaccess": "ping,https"
+    },
+    {
+      "name": "dmz",
+      "ip": "172.16.1.1",
+      "netmask": "255.255.255.0",
+      "type": "vlan",
+      "allowaccess": "ping"
+    }
+  ],
+  "firewall_policy": [
+    {
+      "id": 1,
+      "name": "Corporate-Outbound",
+      "srcintf": "internal",
+      "dstintf": "wan1",
+      "srcaddr": "10.0.1.0/24",
+      "dstaddr": "all",
+      "action": "accept",
+      "schedule": "always",
+      "service": "ALL",
+      "nat": "enable"
+    },
+    {
+      "id": 2,
+      "name": "DMZ-Web-Access",
+      "srcintf": "wan1",
+      "dstintf": "dmz",
+      "srcaddr": "all",
+      "dstaddr": "172.16.1.10",
+      "action": "accept",
+      "schedule": "always",
+      "service": "HTTPS,HTTP",
+      "nat": "disable"
+    },
+    {
+      "id": 3,
+      "name": "Block-Malicious-Subnets",
+      "srcintf": "all",
+      "dstintf": "all",
+      "srcaddr": "Threat_Feeds",
+      "dstaddr": "all",
+      "action": "deny",
+      "schedule": "always",
+      "service": "ALL",
+      "nat": "disable"
+    },
+    {
+      "id": 4,
+      "name": "Default-Deny",
+      "srcintf": "all",
+      "dstintf": "all",
+      "srcaddr": "all",
+      "dstaddr": "all",
+      "action": "deny",
+      "schedule": "always",
+      "service": "ALL",
+      "nat": "disable"
+    }
+  ],
+  "address_objects": [
+    {
+      "name": "LAN_Subnet",
+      "subnet": "10.0.1.0/24"
+    },
+    {
+      "name": "DMZ_Web_Server",
+      "ip": "172.16.1.10"
+    },
+    {
+      "name": "Threat_Feeds",
+      "type": "dynamic-blocklist"
+    }
+  ],
+  "routing": [
+    {
+      "destination": "0.0.0.0/0",
+      "gateway": "192.168.1.1",
+      "interface": "wan1"
+    }
+  ]
+}

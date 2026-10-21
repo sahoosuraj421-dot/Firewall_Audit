@@ -1,0 +1,11 @@
+{
+  "system_status": {
+    "error": "ConnectTimeout: HTTPSConnectionPool(host='192.168.14.1', port=443): Max retries exceeded with url: /api/v2/monitor/system/status?vdom=root (Caused by ConnectTimeoutError(<HTTPSConnection(host='192.168.14.1', port=443) at 0x1babb9b5010>, 'Connection to 192.168.14.1 timed out. (connect timeout=30)'))"
+  },
+  "firewall_policy": {
+    "error": "ConnectTimeout: HTTPSConnectionPool(host='192.168.14.1', port=443): Max retries exceeded with url: /api/v2/cmdb/firewall/policy?vdom=root (Caused by ConnectTimeoutError(<HTTPSConnection(host='192.168.14.1', port=443) at 0x1babb9d9a90>, 'Connection to 192.168.14.1 timed out. (connect timeout=30)'))"
+  },
+  "interfaces": {
+    "error": "ConnectTimeout: HTTPSConnectionPool(host='192.168.14.1', port=443): Max retries exceeded with url: /api/v2/cmdb/system/interface?vdom=root (Caused by ConnectTimeoutError(<HTTPSConnection(host='192.168.14.1', port=443) at 0x1babb9da350>, 'Connection to 192.168.14.1 timed out. (connect timeout=30)'))"
+  }
+}

@@ -1,0 +1,27 @@
+# NOTE: each host here must ALSO be inside authorized_subnets.yaml.
+fortigate:
+  host: "192.168.1.1"
+  vdom: "root"
+  verify_tls: true
+  api_token_env: "FORTIGATE_API_TOKEN"
+  endpoints:
+    - {name: "system_status", path: "/api/v2/monitor/system/status"}
+    - {name: "firewall_policy", path: "/api/v2/cmdb/firewall/policy"}
+    - {name: "interfaces", path: "/api/v2/cmdb/system/interface"}
+
+panos:
+  host: "10.0.0.1"
+  verify_tls: true
+  api_key_env: "PANOS_API_KEY"
+  endpoints:
+    - {name: "system_info", type: "op", cmd: "<show><system><info></info></system></show>"}
+    - {name: "security_rules", type: "config", xpath: "/config/devices/entry/vsys/entry/rulebase/security"}
+
+cisco_restconf:
+  host: "10.0.0.2"
+  verify_tls: true
+  username_env: "CISCO_USER"
+  password_env: "CISCO_PASS"
+  endpoints:
+    - {name: "interfaces", path: "/restconf/data/ietf-interfaces:interfaces"}
+    - {name: "acl", path: "/restconf/data/Cisco-IOS-XE-acl:access-lists"}

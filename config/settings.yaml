@@ -1,0 +1,7 @@
+nmap:
+  # Firewall mgmt ports are NOT in nmap's default top-1000, so list them explicitly.
+  ports: "22,23,80,443,444,4443,8080,8443,10443"
+  scripts: "http-title,ssl-cert"
+  host_timeout: "25s"
+  timeout_seconds: 60
+
